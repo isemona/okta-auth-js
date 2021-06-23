@@ -1,11 +1,27 @@
 # Changelog
 
+## 5.2.0
+
+### Features
+
+- [#831](https://github.com/okta/okta-auth-js/pull/831) Calculates ID token expiry time based on local clock
+
+## 5.1.1
+
+### Bug Fixes
+
+- [#808](https://github.com/okta/okta-auth-js/pull/808) Fixes CommonJS bundle missing crypto modules issue
+
 ## 5.1.0
 
 ### Features
 
 - [#730](https://github.com/okta/okta-auth-js/pull/730) `updateAuthState` returns a Promise.
 - Adds `idx` module. See details in [IDX README.md](./docs/idx.md)
+
+## 5.0.3
+
+- [#807](https://github.com/okta/okta-auth-js/pull/807) Fixes CommonJS bundle missing crypto modules issue
 
 ## 5.0.2
 
