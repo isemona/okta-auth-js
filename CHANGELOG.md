@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.2.0
+
+### Features
+
+- [#838](https://github.com/okta/okta-auth-js/pull/838) `idx.recoverPassword` - checks if flow is supported
+
 ## 5.1.0
 
 ### Features
