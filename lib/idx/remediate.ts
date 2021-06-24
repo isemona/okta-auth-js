@@ -21,11 +21,13 @@ import {
   IdxResponse, 
   isRawIdxResponse, 
   IdxRemediation, 
+  IdxActions,
 } from './types/idx-js';
 
 interface RemediationResponse {
   idxResponse?: IdxResponse;
   nextStep?: NextStep;
+  actions?: IdxActions;
   messages?: IdxMessage[];
   terminal?: boolean;
   canceled?: boolean;
@@ -184,7 +186,7 @@ export async function remediate(
   // Return next step to the caller
   if (!remediator.canRemediate()) {
     const nextStep = getNextStep(remediator, idxResponse);
-    return { idxResponse, nextStep };
+    return { idxResponse, nextStep, actions: idxResponse.actions };
   }
 
   const name = remediator.getName();

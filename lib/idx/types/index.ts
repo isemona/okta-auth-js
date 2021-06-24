@@ -14,7 +14,7 @@
 import { InteractOptions } from '../interact';
 import { APIError, Tokens } from '../../types';
 import { IdxTransactionMeta } from '../../types/Transaction';
-import { IdxMessage, IdxOption } from './idx-js';
+import { IdxMessage, IdxOption, IdxActions } from './idx-js';
 
 export { IdxMessage } from './idx-js';
 export { AuthenticationOptions } from '../authenticate';
@@ -53,6 +53,7 @@ export interface IdxTransaction {
   status: IdxStatus;
   tokens?: Tokens;
   nextStep?: NextStep;
+  actions?: IdxActions;
   messages?: IdxMessage[];
   error?: APIError;
   meta?: IdxTransactionMeta;

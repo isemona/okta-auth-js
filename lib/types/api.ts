@@ -252,5 +252,5 @@ export interface IdxAPI {
   cancel: (options?: CancelOptions) => Promise<IdxTransaction>;
   startTransaction: (options?: IdxOptions) => Promise<IdxTransaction>;
   recoverPassword: (options: PasswordRecoveryOptions) => Promise<IdxTransaction>;
-  handleInteractionCodeRedirect: (url: string) => Promise<void>; 
+  handleInteractionCodeRedirect: (url: string) => Promise<void>;
 }

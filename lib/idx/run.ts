@@ -1,3 +1,4 @@
+import { IdxActions } from './types/idx-js';
 /*!
  * Copyright (c) 2015-present, Okta, Inc. and/or its affiliates. All rights reserved.
  * The Okta software accompanied by this notice is provided pursuant to the Apache License, Version 2.0 (the "License.")
@@ -81,6 +82,7 @@ export async function run(
 ): Promise<IdxTransaction> {
   let tokens;
   let nextStep;
+  let actions: IdxActions | undefined;
   let messages;
   let error;
   let meta;
@@ -111,6 +113,7 @@ export async function run(
       const { 
         idxResponse: idxResponseFromResp, 
         nextStep: nextStepFromResp,
+        actions: actionsFromResp,
         terminal,
         canceled,
         messages: messagesFromResp,
@@ -119,6 +122,7 @@ export async function run(
       // Track fields from remediation response
       nextStep = nextStepFromResp;
       messages = messagesFromResp;
+      actions = actionsFromResp;
 
       // Save intermediate idx response in storage to reduce introspect call
       if (nextStep && idxResponseFromResp) {
@@ -170,6 +174,7 @@ export async function run(
     ...(availableSteps && { availableSteps }),
     ...(tokens && { tokens: tokens.tokens }),
     ...(nextStep && { nextStep }),
+    ...(actions && {actions}),
     ...(messages && { messages }),
     ...(error && { error }),
   };
