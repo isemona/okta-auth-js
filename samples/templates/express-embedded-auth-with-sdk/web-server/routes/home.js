@@ -16,8 +16,9 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  // clear any existing transaction
+  // clear any existing transaction and actions
   req.clearFlowStates();
+  req.clearActions();
 
   // collect attrs for render
   const userinfo = req.userContext && req.userContext.userinfo;

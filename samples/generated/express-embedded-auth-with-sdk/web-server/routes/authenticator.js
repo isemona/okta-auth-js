@@ -158,6 +158,7 @@ router.get('/challenge-authenticator/phone', (req, res) => {
         name: 'verificationCode',
       },
       action: '/challenge-authenticator/phone',
+      transactionId: req.transactionId
     })
   });
 });
@@ -170,6 +171,12 @@ router.post('/challenge-authenticator/phone', async (req, res, next) => {
   handleTransaction({ req, res, next, authClient, transaction });
 });
 
+router.post('/challenge-authenticator/phone/sms/resend', async (req, res, next) => {
+  const actions = Object.keys(req.getActions());
+  const authClient = getAuthClient(req);
+  const transaction = await authClient.idx.startTransaction({actions});
+  handleTransaction({ req, res, next, authClient, transaction });
+});
 
 router.get('/enroll-authenticator/phone/enrollment-data', (req, res) => {
   const { 

@@ -22,6 +22,7 @@ const {
   userContext, 
   authTransaction,
   flowStates,
+  actions,
   testEnv
 } = require('./middlewares');
 
@@ -41,6 +42,7 @@ app.use(session({
   resave: true, 
   saveUninitialized: false
 }));
+app.use(actions);
 app.use(flowStates);
 app.use(authTransaction);
 

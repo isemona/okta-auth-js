@@ -10,24 +10,25 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
+const actionsStore = require('../utils/actionsStore');
 
-const express = require('express');
+module.exports = function actions(req, res, next) {
 
-const router = express.Router();
+  const key = `flow-${req.transactionId}`;
 
-router.get('/', (req, res) => {
-  // clear any existing transaction and actions
-  req.clearFlowStates();
-  req.clearActions();
+  req.getActions = () => {
+    return actionsStore[key] || {};
+  };
+  
+  req.setActions = (actions) => {
+    actionsStore[key] = actions;
+  };
+  
+  req.clearActions = () => {
+    if (actionsStore[key]) {
+      delete actionsStore[key];
+    }
+  };
 
-  // collect attrs for render
-  const userinfo = req.userContext && req.userContext.userinfo;
-  const attributes = userinfo ? Object.entries(userinfo) : [];
-  res.render('home', {
-    isLoggedIn: !!userinfo,
-    userinfo,
-    attributes
-  });
-});
-
-module.exports = router;
+  next();
+};

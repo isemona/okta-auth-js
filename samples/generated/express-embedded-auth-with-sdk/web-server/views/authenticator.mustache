@@ -35,7 +35,11 @@
           </button>
         </form>
       </div>
-
+      <form id="challenge-authenticator-resend-form" class="ui form" action="/challenge-authenticator/phone/sms/resend?state={{transactionId}}" method="POST">
+        <button id="resend-submit-button" class="ui fluid submit button" type="submit">
+          Resend
+        </button>
+      </form>
       {{>cancel}}
 
     </div>

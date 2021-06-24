@@ -97,6 +97,8 @@ module.exports = function handleTransaction({
 
   // Persist states to session
   req.setFlowStates({ idx: transaction });
+  // store instances in storage object
+  req.setActions(transaction.actions);
 
   switch (status) {
     case IdxStatus.PENDING:
